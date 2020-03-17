@@ -35,4 +35,19 @@ limitations under the License. -->
 
     <!-- Button label for Reset button -->
     <string name="reset_button">Reset</string>
+    <string name="settings_button">Settings</string>
+    <string name="color">Color:</string>
+    <string name="count">Count:</string>
+    <string name="enter_a_number">Enter a number</string>
+    <string name="save">Save</string>
+    <string name="reset">Reset</string>
+    <string name="cancel">Cancel</string>
+
+    <string-array name="color_options">
+        <item>default</item>
+        <item>Red</item>
+        <item>Blue</item>
+        <item>Green</item>
+        <item>Black</item>
+    </string-array>
 </resources>

@@ -15,6 +15,7 @@
  */
 package com.example.android.hellosharedprefs;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v4.content.ContextCompat;
@@ -61,16 +62,6 @@ public class MainActivity extends AppCompatActivity {
         mShowCountTextView.setBackgroundColor(mColor);
     }
 
-    @Override
-    protected void onPause(){
-        super.onPause();
-
-        SharedPreferences.Editor preferencesEditor = mPreferences.edit();
-        preferencesEditor.putInt(COUNT_KEY, mCount);
-        preferencesEditor.putInt(COLOR_KEY, mColor);
-        preferencesEditor.apply();
-    }
-
     /**
      * Handles the onClick for the background color buttons. Gets background
      * color of the button that was clicked, and sets the TextView background
@@ -111,10 +102,10 @@ public class MainActivity extends AppCompatActivity {
         mColor = ContextCompat.getColor(this,
                 R.color.default_background);
         mShowCountTextView.setBackgroundColor(mColor);
+    }
 
-        // Clear preferences
-        SharedPreferences.Editor preferencesEditor = mPreferences.edit();
-        preferencesEditor.clear();
-        preferencesEditor.apply();
+    public void openSettings(View view) {
+        Intent intent = new Intent(this, Settings.class);
+        startActivityForResult(intent, 0);
     }
 }
