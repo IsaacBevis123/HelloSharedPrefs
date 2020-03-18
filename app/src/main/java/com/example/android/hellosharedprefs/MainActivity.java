@@ -22,6 +22,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Switch;
 import android.widget.TextView;
 
 
@@ -41,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     // initialize the preferences
     private SharedPreferences mPreferences;
     private String sharedPrefFile = "com.example.android.hellosharedprefs";
+
+    private int SETTINGS = 0;
 
 
     @Override
@@ -106,6 +109,52 @@ public class MainActivity extends AppCompatActivity {
 
     public void openSettings(View view) {
         Intent intent = new Intent(this, Settings.class);
-        startActivityForResult(intent, 0);
+        startActivityForResult(intent, SETTINGS);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        if (requestCode == SETTINGS){
+            if (resultCode == RESULT_OK){
+                SharedPreferences.Editor preferenceEditor = mPreferences.edit();
+                switch (data.getStringExtra(Settings.COLOR_KEY)){
+                    case "default":
+                        preferenceEditor.putInt(COLOR_KEY, getResources().getColor(R.color.default_background));
+                        mShowCountTextView.setBackgroundColor(getResources().getColor(R.color.default_background));
+                        break;
+                    case "Red":
+                        preferenceEditor.putInt(COLOR_KEY, getResources().getColor(R.color.red_background));
+                        mShowCountTextView.setBackgroundColor(getResources().getColor(R.color.red_background));
+                        break;
+                    case "Blue":
+                        preferenceEditor.putInt(COLOR_KEY, getResources().getColor(R.color.blue_background));
+                        mShowCountTextView.setBackgroundColor(getResources().getColor(R.color.blue_background));
+                        break;
+                    case "Green":
+                        preferenceEditor.putInt(COLOR_KEY, getResources().getColor(R.color.green_background));
+                        mShowCountTextView.setBackgroundColor(getResources().getColor(R.color.green_background));
+                        break;
+                    default:
+                        break;
+                }
+
+
+                if (data.getBooleanExtra(Settings.CORRECT_COUNT, false)){
+                    mCount = data.getIntExtra(Settings.COUNT_KEY, 0);
+                    preferenceEditor.putInt(COUNT_KEY, mCount);
+                    mShowCountTextView.setText(String.format("%s", mCount));
+                }
+                preferenceEditor.apply();
+            }
+            else if (resultCode == Settings.RESULT_RESET){
+                SharedPreferences.Editor preferenceEditor = mPreferences.edit();
+                mCount = 0;
+                mShowCountTextView.setBackgroundColor(getResources().getColor(R.color.default_background));
+                preferenceEditor.putInt(COLOR_KEY, getResources().getColor(R.color.default_background));
+                preferenceEditor.putInt(COUNT_KEY, mCount);
+
+                preferenceEditor.apply();
+            }
+        }
     }
 }

@@ -1685,8 +1685,7 @@
         <item>Red</item>
         <item>Blue</item>
         <item>Green</item>
-        <item>Black</item>
-    </string-array></file><file path="D:\android projects\HelloSharedPrefs\app\src\main\res\values\styles.xml" qualifiers=""><style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    </string-array><string name="reset">Reset</string><string name="count">Count:</string><string name="cancel">Cancel</string><string name="enter_a_number">Enter a number</string><string name="save">Save</string></file><file path="D:\android projects\HelloSharedPrefs\app\src\main\res\values\styles.xml" qualifiers=""><style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
